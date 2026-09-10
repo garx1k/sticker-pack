@@ -1,0 +1,2258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Иркутск — стикерпак</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f6f2ea;
+            color: #25211e;
+            font-family: "Manrope", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .25;
+            background-image: radial-gradient(#777 0.6px, transparent 0.6px);
+            background-size: 6px 6px;
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "PT Serif", serif;
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #196d87;
+            font-family: "Marck Script", cursive;
+            font-size: 34px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #25211e;
+            text-decoration: none;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        nav a:hover {
+            color: #196d87;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 700px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0 90px;
+        }
+
+        .small-title {
+            color: #196d87;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: "PT Serif", serif;
+            font-size: clamp(52px, 7vw, 90px);
+            line-height: .93;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #196d87;
+            font-family: "Marck Script", cursive;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        .hero-text {
+            max-width: 470px;
+            color: #71695f;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px 15px 25px;
+            background: #25211e;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .hero-button:hover {
+            background: #196d87;
+            transform: translateY(-3px);
+        }
+
+        .hero-button span {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: #f1e7d8;
+            color: #25211e;
+            display: grid;
+            place-items: center;
+        }
+
+        /* ================= MAIN IMAGE ================= */
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            right: 0;
+            top: 10%;
+            background: #e5dbcc;
+            border-radius: 45% 55% 50% 50%;
+            transform: rotate(5deg);
+            z-index: -1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+            filter: drop-shadow(0 25px 25px rgba(50,40,25,.18));
+            transition: .5s;
+        }
+
+        .hero-image:hover img {
+            transform: rotate(-1deg) translateY(-7px);
+        }
+
+        /* ================= MARQUEE ================= */
+
+        .line {
+            border-top: 1px solid rgba(37,33,30,.15);
+            border-bottom: 1px solid rgba(37,33,30,.15);
+            padding: 18px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .line {
+    border-top: 1px solid rgba(37,33,30,.15);
+    border-bottom: 1px solid rgba(37,33,30,.15);
+    padding: 18px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #f6f2ea;
+}
+
+.line-content {
+    display: inline-flex;
+    width: max-content;
+    animation: marquee 24s linear infinite;
+    font-family: "PT Serif", serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #766e63;
+    will-change: transform;
+}
+
+.line-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.line-content span {
+    color: #196d87;
+    padding: 0 25px;
+    font-style: normal;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.line:hover .line-content {
+    animation-play-state: paused;
+}
+
+        /* ================= ABOUT ================= */
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-label {
+            color: #196d87;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            font-family: "PT Serif", serif;
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: .98;
+            letter-spacing: -2px;
+        }
+
+        .about-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            align-items: end;
+            margin-bottom: 55px;
+        }
+
+        .about-header p {
+            max-width: 380px;
+            color: #71695f;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* ================= STICKERS ================= */
+
+        .stickers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .sticker-card {
+            background: #fffdfa;
+            border: 1px solid rgba(37,33,30,.12);
+            padding: 20px;
+            cursor: pointer;
+            transition: .3s;
+            position: relative;
+        }
+
+        .sticker-card:nth-child(2),
+        .sticker-card:nth-child(5) {
+            transform: translateY(25px);
+        }
+
+        .sticker-card:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 20px 40px rgba(40,30,20,.12);
+        }
+
+        .sticker-card:nth-child(2):hover,
+        .sticker-card:nth-child(5):hover {
+            transform: translateY(17px) rotate(1deg);
+        }
+
+        .sticker-number {
+            position: absolute;
+            top: 14px;
+            left: 16px;
+            background: #25211e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            z-index: 2;
+        }
+
+        .sticker-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .sticker-info {
+            border-top: 1px solid rgba(37,33,30,.12);
+            padding-top: 17px;
+            margin-top: 10px;
+        }
+
+        .sticker-info h3 {
+            font-family: "PT Serif", serif;
+            font-size: 22px;
+            margin-bottom: 7px;
+        }
+
+        .sticker-info p {
+            font-size: 12px;
+            color: #71695f;
+            line-height: 1.6;
+        }
+
+        /* ================= DARK BLOCK ================= */
+
+        .dark-section {
+            background: #272c2c;
+            color: #f8f5ef;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::after {
+            content: "ИРКУТСК";
+            position: absolute;
+            right: -30px;
+            bottom: -50px;
+            font-family: "PT Serif", serif;
+            font-size: 150px;
+            opacity: .04;
+        }
+
+        .dark-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 80px;
+        }
+
+        .dark-section h2 {
+            color: white;
+        }
+
+        .dark-text {
+            margin-top: 25px;
+            color: #c9c7c0;
+            line-height: 1.7;
+            font-size: 14px;
+            max-width: 400px;
+        }
+
+        .facts {
+            border-top: 1px solid rgba(255,255,255,.15);
+        }
+
+        .fact {
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            gap: 10px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,.15);
+        }
+
+        .fact-number {
+            color: #9ed2dc;
+            font-family: "Marck Script", cursive;
+            font-size: 27px;
+        }
+
+        .fact h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .fact p {
+            color: #c9c7c0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        /* ================= RANDOM STICKER ================= */
+
+.random-section {
+    padding-top: 20px;
+    padding-bottom: 110px;
+}
+
+.random-box {
+    background: #196d87;
+    color: white;
+    padding: 55px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.random-box::after {
+    content: "07";
+    position: absolute;
+    right: 30px;
+    bottom: -55px;
+    font-family: "PT Serif", serif;
+    font-size: 190px;
+    line-height: 1;
+    opacity: .08;
+    pointer-events: none;
+}
+
+.random-box .section-label {
+    color: #b9e2e8;
+}
+
+.random-left h2 {
+    color: white;
+    margin-bottom: 18px;
+}
+
+.random-left p {
+    max-width: 470px;
+    color: rgba(255,255,255,.72);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.random-right {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.random-button {
+    border: 1px solid white;
+    background: white;
+    color: #25211e;
+    padding: 16px 22px 16px 18px;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: .25s;
+}
+
+.random-button span {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #196d87;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+
+.random-button:hover {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+.random-hint {
+    margin-top: 13px;
+    color: rgba(255,255,255,.55);
+    font-size: 10px;
+}
+/* ================= BAIKAL MODE ================= */
+
+.baikal-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 16px 11px 12px;
+
+    border: 1px solid rgba(37,33,30,.15);
+    border-radius: 50px;
+
+    background: rgba(248,245,239,.9);
+    backdrop-filter: blur(10px);
+
+    color: #25211e;
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(30,40,40,.1);
+
+    transition: .3s;
+}
+
+.baikal-icon {
+    width: 27px;
+    height: 27px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background: #196d87;
+    color: white;
+
+    font-size: 18px;
+
+    transition: .4s;
+}
+
+.baikal-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(30,40,40,.16);
+}
+
+
+/* Сам режим */
+
+body.baikal-mode {
+    background: #eaf4f5;
+    transition: background .6s ease;
+}
+
+
+/* Голубоватая подсветка */
+
+body.baikal-mode::before {
+    opacity: .16;
+    background-image:
+        radial-gradient(#196d87 0.6px, transparent 0.6px);
+}
+
+
+/* Основные блоки */
+
+body.baikal-mode .line {
+    background: #e5f1f3;
+}
+
+body.baikal-mode .sticker-card {
+    background: #f8fcfc;
+    border-color: rgba(25,109,135,.18);
+}
+
+body.baikal-mode .hero-image::before {
+    background: #cfe7eb;
+}
+
+body.baikal-mode .rating-box {
+    background: #d6ebee;
+}
+
+
+/* Кнопка активного режима */
+
+body.baikal-mode .baikal-toggle {
+    background: #196d87;
+    color: white;
+    border-color: #196d87;
+}
+
+body.baikal-mode .baikal-icon {
+    background: white;
+    color: #196d87;
+    transform: rotate(180deg);
+}
+
+
+/* Лёгкое движение воды */
+
+body.baikal-mode .hero-image img {
+    animation: baikalFloat 4s ease-in-out infinite;
+}
+
+@keyframes baikalFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* На мобильном */
+
+@media(max-width: 550px) {
+
+    .baikal-toggle {
+        right: 14px;
+        bottom: 14px;
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    .random-box {
+        padding: 40px 25px;
+        display: block;
+    }
+
+    .random-right {
+        margin-top: 30px;
+        text-align: left;
+    }
+
+}
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 80px 0 40px;
+        }
+
+        .rating-box {
+            background: #e6dccd;
+            padding: 65px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rating-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .rating-box p {
+            color: #71695f;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .rating-button {
+            border: none;
+            background: #25211e;
+            color: white;
+            padding: 15px 27px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .rating-button:hover {
+            background: #196d87;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+            font-size: 11px;
+            color: #71695f;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(25,25,23,.78);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            z-index: 100;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            width: min(850px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            background: #f8f5ef;
+            padding: 30px;
+            position: relative;
+            transform: scale(.92);
+            transition: .3s;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .modal-description {
+            border-top: 1px solid rgba(37,33,30,.15);
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .modal-description h3 {
+            font-family: "PT Serif", serif;
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .modal-description p {
+            color: #71695f;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #25211e;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        /* ================= RATING MODAL ================= */
+
+        .rating-modal-content {
+            width: min(480px, 100%);
+            background: #f8f5ef;
+            padding: 45px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 25px 0;
+        }
+
+        .star {
+            font-size: 35px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: .35;
+            transition: .2s;
+        }
+
+        .star:hover,
+        .star.selected {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .rating-result {
+            min-height: 22px;
+            color: #196d87;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 30px;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .stickers {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dark-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-header {
+                display: block;
+            }
+
+            .about-header p {
+                margin-top: 20px;
+            }
+        }
+
+        @media(max-width: 550px) {
+
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            nav {
+                display: none;
+            }
+
+            h1 {
+                font-size: 55px;
+            }
+
+            .stickers {
+                grid-template-columns: 1fr;
+            }
+
+            .sticker-card:nth-child(2),
+            .sticker-card:nth-child(5) {
+                transform: none;
+            }
+
+            .sticker-card:nth-child(2):hover,
+            .sticker-card:nth-child(5):hover {
+                transform: translateY(-8px);
+            }
+
+            .rating-box {
+                padding: 40px 20px;
+            }
+
+            .footer-bottom {
+                display: block;
+                line-height: 2;
+            }
+        }
+        /* ================= РЕЖИМ БАЙКАЛА ================= */
+/* ================= БАЙКАЛ — МЕТЕЛЬ ================= */
+/* ================= РЕЖИМ БАЙКАЛА ================= */
+
+.baikal-weather {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+/* Холодный оттенок поверх страницы */
+body.baikal-mode::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 998;
+
+    background: linear-gradient(
+        180deg,
+        rgba(190, 225, 235, 0.12),
+        rgba(120, 190, 215, 0.04)
+    );
+}
+
+/* ================= СОСУЛЬКИ ================= */
+
+.icicle {
+    position: absolute;
+    top: 0;
+
+    width: 8px;
+    height: 60px;
+
+    background: linear-gradient(
+        90deg,
+        rgba(220,245,255,.25),
+        rgba(255,255,255,.95),
+        rgba(150,210,230,.45)
+    );
+
+    border-radius: 0 0 50% 50%;
+
+    filter: drop-shadow(
+        0 3px 5px rgba(50,100,120,.18)
+    );
+
+    transform-origin: top;
+
+    animation:
+        icicleAppear .8s ease forwards;
+}
+
+@keyframes icicleAppear {
+
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: .9;
+    }
+
+}
+
+/* ================= СНЕГ ================= */
+
+.snowflake {
+    position: absolute;
+
+    top: -40px;
+
+    color: white;
+
+    font-size: 14px;
+
+    opacity: .75;
+
+    filter: blur(.2px);
+
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+
+    0% {
+        transform:
+            translate3d(0, -40px, 0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translate3d(
+                calc(var(--wind) * .5),
+                50vh,
+                0
+            )
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translate3d(
+                var(--wind),
+                110vh,
+                0
+            )
+            rotate(360deg);
+    }
+
+}
+
+/* ================= МЕТЕЛЬ ================= */
+
+.wind-line {
+    position: absolute;
+
+    width: 130px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.75),
+        transparent
+    );
+
+    opacity: .45;
+
+    transform: rotate(-12deg);
+
+    animation:
+        windMove 1.8s ease-in-out infinite;
+}
+
+@keyframes windMove {
+
+    0% {
+        transform:
+            translateX(-200px)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .5;
+    }
+
+    100% {
+        transform:
+            translateX(110vw)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+
+}
+@keyframes blizzardWind {
+
+    0% {
+        transform:
+            translateX(-250px)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .7;
+    }
+
+    70% {
+        opacity: .45;
+    }
+
+    100% {
+        transform:
+            translateX(120vw)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* ================= СНЕЖНАЯ ПЫЛЬ ================= */
+
+body.baikal-mode .hero-image img {
+    animation:
+        baikalFloat 4s ease-in-out infinite;
+}
+
+@keyframes baikalFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* Мобильная версия */
+
+@media(max-width: 550px) {
+
+    .baikal-toggle {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .icicle {
+        opacity: .7;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <button class="baikal-toggle" id="baikalToggle" onclick="toggleBaikal()">
+    <span class="baikal-icon">◌</span>
+    <span class="baikal-text">Режим Байкала</span>
+</button>
+<header class="container">
+
+    <div class="logo">
+        Иркутск <span>♥</span>
+    </div>
+
+    <nav>
+        <a href="#stickers">Стикеры</a>
+        <a href="#meaning">Идея</a>
+        <a href="#rating">Оценить</a>
+    </nav>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="container hero">
+
+        <div>
+
+            <div class="small-title">
+                авторский стикерпак
+            </div>
+
+            <h1>
+                Иркутск —
+                <br>
+                город с
+                <span>характером.</span>
+            </h1>
+
+            <p class="hero-text">
+                Семь образов, через которые можно показать Иркутск
+                без длинных описаний. Архитектура, Байкал, Ангара,
+                местная кухня, история и сибирская зима.
+            </p>
+
+            <a href="#stickers" class="hero-button">
+                Смотреть стикеры
+                <span>↓</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <img
+                src="images/main.png"
+                alt="Стикерпак Иркутск"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- LINE -->
+
+    <div class="line">
+
+    <div class="line-content">
+
+        <div class="line-group">
+
+            БАЙКАЛ
+            <span>✦</span>
+
+            АНГАРА
+            <span>✦</span>
+
+            ДЕРЕВЯННАЯ АРХИТЕКТУРА
+            <span>✦</span>
+
+            ОМУЛЬ
+            <span>✦</span>
+
+            ИСТОРИЯ
+            <span>✦</span>
+
+            СИБИРСКАЯ ЗИМА
+            <span>✦</span>
+
+        </div>
+
+
+        <div class="line-group">
+
+            БАЙКАЛ
+            <span>✦</span>
+
+            АНГАРА
+            <span>✦</span>
+
+            ДЕРЕВЯННАЯ АРХИТЕКТУРА
+            <span>✦</span>
+
+            ОМУЛЬ
+            <span>✦</span>
+
+            ИСТОРИЯ
+            <span>✦</span>
+
+            СИБИРСКАЯ ЗИМА
+            <span>✦</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- STICKERS -->
+
+    <section class="container" id="stickers">
+
+        <div class="about-header">
+
+            <div>
+
+                <div class="section-label">
+                    01 — стикерпак
+                </div>
+
+                <h2>
+                    Семь образов.<br>
+                    Один Иркутск.
+                </h2>
+
+            </div>
+
+            <p>
+                Каждый стикер основан на конкретном образе
+                города. Нажми на любой — он откроется крупно,
+                вместе с объяснением идеи.
+            </p>
+
+        </div>
+
+
+        <div class="stickers">
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(1)"
+            >
+
+                <div class="sticker-number">01</div>
+
+                <img src="images/sticker-01.png">
+
+                <div class="sticker-info">
+
+                    <h3>Деревянный Иркутск</h3>
+
+                    <p>
+                        Резные наличники и старые деревянные дома —
+                        одна из самых узнаваемых деталей города.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(2)"
+            >
+
+                <div class="sticker-number">02</div>
+
+                <img src="images/sticker-02.png">
+
+                <div class="sticker-info">
+
+                    <h3>Байкал</h3>
+
+                    <p>
+                        Символ региона, который невозможно не связать
+                        с поездкой в Иркутск.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(3)"
+            >
+
+                <div class="sticker-number">03</div>
+
+                <img src="images/sticker-03.png">
+
+                <div class="sticker-info">
+
+                    <h3>Ангара</h3>
+
+                    <p>
+                        Река проходит прямо через город и стала
+                        частью его повседневного пейзажа.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(4)"
+            >
+
+                <div class="sticker-number">04</div>
+
+                <img src="images/sticker-04.png">
+
+                <div class="sticker-info">
+
+                    <h3>Сибирский вкус</h3>
+
+                    <p>
+                        Омуль — один из продуктов, который прочно
+                        ассоциируется с Байкалом и Сибирью.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(5)"
+            >
+
+                <div class="sticker-number">05</div>
+
+                <img src="images/sticker-05.png">
+
+                <div class="sticker-info">
+
+                    <h3>Иркутская область</h3>
+
+                    <p>
+                        Природа региона показывает, что Иркутск —
+                        это не только город, но и огромная территория вокруг.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(6)"
+            >
+
+                <div class="sticker-number">06</div>
+
+                <img src="images/sticker-06.png">
+
+                <div class="sticker-info">
+
+                    <h3>Исторический Иркутск</h3>
+
+                    <p>
+                        Архитектура напоминает о прошлом города
+                        и его роли в истории Сибири.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="sticker-card"
+                onclick="openSticker(7)"
+            >
+
+                <div class="sticker-number">07</div>
+
+                <img src="images/sticker-07.png">
+
+                <div class="sticker-info">
+
+                    <h3>Сибирская зима</h3>
+
+                    <p>
+                        Холод здесь становится частью городской
+                        культуры и отдельным впечатлением.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+    <!-- RANDOM STICKER -->
+
+<section class="container random-section">
+
+    <div class="random-box">
+
+        <div class="random-left">
+
+            <div class="section-label">
+                маленький интерактив
+            </div>
+
+            <h2>
+                Не знаешь,<br>
+                какой выбрать?
+            </h2>
+
+            <p>
+                Пусть сайт решит за тебя.
+                Нажми кнопку — и один из семи стикеров
+                откроется случайно.
+            </p>
+
+        </div>
+
+
+        <div class="random-right">
+
+            <button
+                class="random-button"
+                onclick="randomSticker()"
+            >
+                <span>↗</span>
+                Случайный стикер
+            </button>
+
+            <div class="random-hint">
+                7 вариантов · 1 нажатие
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- MEANING -->
+<section class="dark-section" id="meaning">
+
+    <div class="container dark-grid">
+
+        <div>
+
+            <div class="section-label">
+                02 — идея
+            </div>
+
+            <h2>
+                Почему именно
+                <br>
+                эти семь?
+            </h2>
+
+            <p class="dark-text">
+                Каждый стикер отвечает за отдельную сторону Иркутска.
+                Вместе они складываются в цельный образ города и региона —
+                от деревянных улиц до Байкальского льда.
+            </p>
+
+        </div>
+
+
+        <div class="facts">
+
+            <!-- 01 -->
+
+            <div class="fact">
+
+                <div class="fact-number">01</div>
+
+                <div>
+
+                    <h3>Городская среда</h3>
+
+                    <p>
+                        Деревянные дома и резные наличники —
+                        одна из самых узнаваемых деталей Иркутска.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="fact">
+
+                <div class="fact-number">02</div>
+
+                <div>
+
+                    <h3>Природа</h3>
+
+                    <p>
+                        Байкал показывает Иркутск через его главное
+                        природное окружение — воду, скалы и тайгу.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="fact">
+
+                <div class="fact-number">03</div>
+
+                <div>
+
+                    <h3>Городской пейзаж</h3>
+
+                    <p>
+                        Ангара проходит через Иркутск и буквально
+                        формирует часть его ежедневного вида.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="fact">
+
+                <div class="fact-number">04</div>
+
+                <div>
+
+                    <h3>Местный характер</h3>
+
+                    <p>
+                        Омуль добавляет в набор то, что нельзя показать
+                        архитектурой — вкус и локальную культуру.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="fact">
+
+                <div class="fact-number">05</div>
+
+                <div>
+
+                    <h3>Регион</h3>
+
+                    <p>
+                        Иркутская область — это гораздо больше самого города:
+                        леса, горы, реки и большие расстояния.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 06 -->
+
+            <div class="fact">
+
+                <div class="fact-number">06</div>
+
+                <div>
+
+                    <h3>История</h3>
+
+                    <p>
+                        Старинная архитектура напоминает, что Иркутск —
+                        город с большой историей и сохранившимся прошлым.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 07 -->
+
+            <div class="fact">
+
+                <div class="fact-number">07</div>
+
+                <div>
+
+                    <h3>Сибирская зима</h3>
+
+                    <p>
+                        Лёд, снег и мороз стали не просто погодой,
+                        а отдельной частью характера региона.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+    
+
+
+    <!-- RATING -->
+
+    <footer class="container" id="rating">
+
+        <div class="rating-box">
+
+            <div class="section-label">
+                финал
+            </div>
+
+            <h2>
+                Ну как вам Иркутск?
+            </h2>
+
+            <p>
+                Оставьте свою оценку сайту.
+            </p>
+
+            <button
+                class="rating-button"
+                onclick="openRating()"
+            >
+                Оценить сайт
+            </button>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                Стикерпак «Иркутск»
+            </span>
+
+            <span>
+                Авторский проект · 2026
+            </span>
+
+        </div>
+
+    </footer>
+
+</main>
+
+
+<!-- STICKER MODAL -->
+
+<div
+    class="modal"
+    id="stickerModal"
+    onclick="closeSticker(event)"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeSticker()"
+        >
+            ×
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt=""
+        >
+
+        <div class="modal-description">
+
+            <h3 id="modalTitle"></h3>
+
+            <p id="modalText"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RATING MODAL -->
+
+<div
+    class="modal"
+    id="ratingModal"
+    onclick="closeRating(event)"
+>
+
+    <div class="rating-modal-content">
+
+        <button
+            class="close"
+            onclick="closeRating()"
+        >
+            ×
+        </button>
+
+        <div class="section-label">
+            ваша оценка
+        </div>
+
+        <h2>
+            Как вам сайт?
+        </h2>
+
+        <div class="stars">
+
+            <button class="star" onclick="rate(1)">★</button>
+            <button class="star" onclick="rate(2)">★</button>
+            <button class="star" onclick="rate(3)">★</button>
+            <button class="star" onclick="rate(4)">★</button>
+            <button class="star" onclick="rate(5)">★</button>
+
+        </div>
+
+        <div
+            class="rating-result"
+            id="ratingResult"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<<script>
+
+    /* =====================================================
+       ДАННЫЕ СТИКЕРОВ
+    ===================================================== */
+
+    const stickers = {
+
+        1: {
+            image: "images/sticker-01.png",
+            title: "Деревянный Иркутск",
+            text: "Резные наличники и деревянная архитектура — одна из главных визуальных особенностей старого Иркутска."
+        },
+
+        2: {
+            image: "images/sticker-02.png",
+            title: "Байкал",
+            text: "Байкал — главный природный символ региона и одна из первых ассоциаций с поездкой в Иркутскую область."
+        },
+
+        3: {
+            image: "images/sticker-03.png",
+            title: "Ангара",
+            text: "Ангара проходит через Иркутск и формирует узнаваемый городской пейзаж."
+        },
+
+        4: {
+            image: "images/sticker-04.png",
+            title: "Сибирский вкус",
+            text: "Омуль добавляет в набор локальную деталь — продукт, который тесно связан с Байкалом и сибирской кухней."
+        },
+
+        5: {
+            image: "images/sticker-05.png",
+            title: "Иркутская область",
+            text: "Этот образ показывает масштаб региона: за городскими улицами начинается огромная территория с лесами, реками и горами."
+        },
+
+        6: {
+            image: "images/sticker-06.png",
+            title: "Исторический Иркутск",
+            text: "Архитектурный образ напоминает о прошлом города и сохраняет связь между старым и современным Иркутском."
+        },
+
+        7: {
+            image: "images/sticker-07.png",
+            title: "Сибирская зима",
+            text: "Зима стала отдельной частью образа Иркутска: лёд, снег и холод превращаются здесь в характерную особенность региона."
+        }
+
+    };
+
+
+    /* =====================================================
+       ОТКРЫТИЕ СТИКЕРА
+    ===================================================== */
+
+    function openSticker(number) {
+
+        const sticker = stickers[number];
+
+        if (!sticker) {
+            return;
+        }
+
+        document.getElementById("modalImage").src =
+            sticker.image;
+
+        document.getElementById("modalTitle").textContent =
+            sticker.title;
+
+        document.getElementById("modalText").textContent =
+            sticker.text;
+
+        document
+            .getElementById("stickerModal")
+            .classList.add("active");
+
+        document.body.style.overflow = "hidden";
+    }
+
+
+    /* =====================================================
+       ЗАКРЫТИЕ СТИКЕРА
+    ===================================================== */
+
+    function closeSticker(event) {
+
+        if (
+            !event ||
+            event.target.id === "stickerModal" ||
+            event.target.classList.contains("close")
+        ) {
+
+            document
+                .getElementById("stickerModal")
+                .classList.remove("active");
+
+            document.body.style.overflow = "";
+        }
+    }
+
+
+    /* =====================================================
+       РЕЙТИНГ
+    ===================================================== */
+
+    function openRating() {
+
+        document
+            .getElementById("ratingModal")
+            .classList.add("active");
+
+        document.body.style.overflow = "hidden";
+    }
+
+
+    function closeRating(event) {
+
+        if (
+            !event ||
+            event.target.id === "ratingModal" ||
+            event.target.classList.contains("close")
+        ) {
+
+            document
+                .getElementById("ratingModal")
+                .classList.remove("active");
+
+            document.body.style.overflow = "";
+        }
+    }
+
+
+    /* =====================================================
+       СЛУЧАЙНЫЙ СТИКЕР
+    ===================================================== */
+
+    function randomSticker() {
+
+        const number =
+            Math.floor(Math.random() * 7) + 1;
+
+        openSticker(number);
+    }
+
+
+    /* =====================================================
+       ОЦЕНКА
+    ===================================================== */
+
+    function rate(number) {
+
+        const stars =
+            document.querySelectorAll(".star");
+
+        stars.forEach((star, index) => {
+
+            if (index < number) {
+
+                star.classList.add("selected");
+
+            } else {
+
+                star.classList.remove("selected");
+
+            }
+
+        });
+
+
+        const result =
+            document.getElementById("ratingResult");
+
+
+        if (number === 5) {
+
+            result.textContent =
+                "Вот это оценка. Спасибо!";
+
+        } else if (number >= 3) {
+
+            result.textContent =
+                "Спасибо за оценку!";
+
+        } else {
+
+            result.textContent =
+                "Принято. Есть над чем работать.";
+
+        }
+    }
+
+
+    /* =====================================================
+       ESC — ЗАКРЫТЬ ОКНА
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                document
+                    .getElementById("stickerModal")
+                    .classList.remove("active");
+
+                document
+                    .getElementById("ratingModal")
+                    .classList.remove("active");
+
+                document.body.style.overflow = "";
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       РЕЖИМ БАЙКАЛА
+    ===================================================== */
+
+    function toggleBaikal() {
+
+        const body =
+            document.body;
+
+        const button =
+            document.getElementById("baikalToggle");
+
+        const icon =
+            button.querySelector(".baikal-icon");
+
+        const text =
+            button.querySelector(".baikal-text");
+
+
+        body.classList.toggle("baikal-mode");
+
+
+        if (
+            body.classList.contains("baikal-mode")
+        ) {
+
+            icon.textContent = "❄";
+
+            text.textContent =
+                "Отключить холод";
+
+            startBaikalWeather();
+
+        } else {
+
+            icon.textContent = "◌";
+
+            text.textContent =
+                "Режим Байкала";
+
+            stopBaikalWeather();
+        }
+    }
+
+
+    /* =====================================================
+       ЗАПУСК МЕТЕЛИ
+    ===================================================== */
+
+    function startBaikalWeather() {
+
+        /* На всякий случай удаляем старую метель */
+
+        stopBaikalWeather();
+
+
+        /* Контейнер для снега */
+
+        const weather =
+            document.createElement("div");
+
+        weather.className =
+            "baikal-weather";
+
+        weather.id =
+            "baikalWeather";
+
+
+        document.body.appendChild(weather);
+
+
+        /* =================================================
+           СОСУЛЬКИ
+        ================================================= */
+
+        const icicleCount = 22;
+
+
+        for (
+            let i = 0;
+            i < icicleCount;
+            i++
+        ) {
+
+            const icicle =
+                document.createElement("div");
+
+            icicle.className =
+                "icicle";
+
+
+            /* Разная длина */
+
+            const height =
+                25 + Math.random() * 90;
+
+
+            /* Разная ширина */
+
+            const width =
+                4 + Math.random() * 9;
+
+
+            icicle.style.height =
+                height + "px";
+
+            icicle.style.width =
+                width + "px";
+
+
+            /* Случайное место сверху */
+
+            icicle.style.left =
+                Math.random() * 100 + "%";
+
+
+            /* Не все появляются одновременно */
+
+            icicle.style.animationDelay =
+                Math.random() * 1.5 + "s";
+
+
+            weather.appendChild(icicle);
+        }
+
+
+        /* =================================================
+           СНЕЖИНКИ
+        ================================================= */
+
+        const snowCount = 90;
+
+
+        for (
+            let i = 0;
+            i < snowCount;
+            i++
+        ) {
+
+            const snow =
+                document.createElement("div");
+
+
+            snow.className =
+                "snowflake";
+
+
+            /* Иногда большая снежинка,
+               иногда маленькая */
+
+            snow.textContent =
+                Math.random() > 0.35
+                    ? "❄"
+                    : "·";
+
+
+            /* Начальная позиция */
+
+            snow.style.left =
+                Math.random() * 100 + "%";
+
+
+            /* Размер */
+
+            snow.style.fontSize =
+                6 + Math.random() * 14 + "px";
+
+
+            /* Прозрачность */
+
+            snow.style.opacity =
+                0.3 + Math.random() * 0.6;
+
+
+            /* Сила ветра */
+
+            snow.style.setProperty(
+                "--wind",
+                -220 + Math.random() * 440 + "px"
+            );
+
+
+            /* Скорость падения */
+
+            snow.style.animationDuration =
+                4 + Math.random() * 7 + "s";
+
+
+            /* Чтобы снег был распределён по экрану */
+
+            snow.style.animationDelay =
+                -Math.random() * 8 + "s";
+
+
+            weather.appendChild(snow);
+        }
+
+
+        /* =================================================
+           ВЕТЕР
+        ================================================= */
+
+        for (
+            let i = 0;
+            i < 8;
+            i++
+        ) {
+
+            const wind =
+                document.createElement("div");
+
+
+            wind.className =
+                "wind-line";
+
+
+            wind.style.top =
+                10 + Math.random() * 80 + "%";
+
+
+            wind.style.left =
+                Math.random() * 40 + "%";
+
+
+            wind.style.width =
+                80 + Math.random() * 180 + "px";
+
+
+            wind.style.animationDelay =
+                Math.random() * 2.5 + "s";
+
+
+            weather.appendChild(wind);
+        }
+    }
+
+
+    /* =====================================================
+       ОСТАНОВКА МЕТЕЛИ
+    ===================================================== */
+
+    function stopBaikalWeather() {
+
+        const weather =
+            document.getElementById(
+                "baikalWeather"
+            );
+
+
+        if (weather) {
+
+            weather.remove();
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
