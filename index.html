@@ -745,6 +745,17 @@ body.baikal-mode .hero-image img {
             display: block;
         }
 
+        #stickerModal .modal-content img {
+            transform-origin: center;
+            animation: stickerSpin 3.2s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        @keyframes stickerSpin {
+            0%, 100% { transform: rotate(-7deg) translate(-10px, 6px) scale(.97); }
+            50% { transform: rotate(7deg) translate(10px, -6px) scale(1.03); }
+        }
+
         .modal-description {
             border-top: 1px solid rgba(37,33,30,.15);
             margin-top: 20px;
@@ -1786,7 +1797,7 @@ body.baikal-mode .hero-image img {
 
 
 <script>
-    (() => { const l=document.getElementById('pageLoader'), p=document.getElementById('loaderPercent'), b=document.getElementById('loaderProgress'), s=performance.now(); function t(n){const v=Math.min(100,Math.floor(((n-s)/6000)*99)+1); p.textContent=v+'%'; b.style.width=v+'%'; if(v<100) requestAnimationFrame(t); else {l.style.opacity='0'; setTimeout(()=>l.remove(),700)}} requestAnimationFrame(t) })();
+    (() => { const l=document.getElementById('pageLoader'), p=document.getElementById('loaderPercent'), b=document.getElementById('loaderProgress'), s=performance.now(); function t(n){const v=Math.min(100,Math.floor(((n-s)/3000)*99)+1); p.textContent=v+'%'; b.style.width=v+'%'; if(v<100) requestAnimationFrame(t); else {l.style.opacity='0'; setTimeout(()=>l.remove(),700)}} requestAnimationFrame(t) })();
 
     /* =====================================================
        ДАННЫЕ СТИКЕРОВ
