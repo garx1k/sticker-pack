@@ -1114,6 +1114,14 @@ body.baikal-mode .hero-image img {
 </head>
 
 <body>
+    <div id="pageLoader" style="position:fixed;inset:0;z-index:300;background:#272c2c;color:#f8f5ef;display:grid;place-items:center;transition:opacity .6s ease">
+        <div style="width:min(360px,calc(100% - 44px));text-align:center">
+            <img src="images/loader-programmer.png" alt="Программист за ноутбуком" style="width:260px;height:260px;object-fit:contain;display:block;margin:0 auto 20px">
+            <div style="color:#b9e2e8;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:13px">Стикерпак загружается</div>
+            <div id="loaderPercent" style="font-family:'PT Serif',serif;font-size:34px;margin-bottom:13px">1%</div>
+            <div style="height:6px;background:rgba(255,255,255,.2);border-radius:8px;overflow:hidden"><div id="loaderProgress" style="width:1%;height:100%;background:#9ed2dc;transition:width .08s linear"></div></div>
+        </div>
+    </div>
     <button class="baikal-toggle" id="baikalToggle" onclick="toggleBaikal()">
     <span class="baikal-icon">◌</span>
     <span class="baikal-text">Режим Байкала</span>
@@ -1777,7 +1785,8 @@ body.baikal-mode .hero-image img {
 </div>
 
 
-<<script>
+<script>
+    (() => { const l=document.getElementById('pageLoader'), p=document.getElementById('loaderPercent'), b=document.getElementById('loaderProgress'), s=performance.now(); function t(n){const v=Math.min(100,Math.floor(((n-s)/6000)*99)+1); p.textContent=v+'%'; b.style.width=v+'%'; if(v<100) requestAnimationFrame(t); else {l.style.opacity='0'; setTimeout(()=>l.remove(),700)}} requestAnimationFrame(t) })();
 
     /* =====================================================
        ДАННЫЕ СТИКЕРОВ
