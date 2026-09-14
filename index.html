@@ -638,6 +638,66 @@ body.baikal-mode .hero-image img {
 
 }
 
+/* ================= INTERACTIVE ROUTE MAP ================= */
+.route-section { padding-top: 60px; }
+.route-intro { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:32px; }
+.route-intro p { max-width:390px; color:#71695f; line-height:1.7; font-size:14px; }
+.route-controls { display:flex; justify-content:flex-end; margin-bottom:18px; }
+.theme-toggle { border:1px solid rgba(37,33,30,.18); background:transparent; color:#25211e; padding:10px 15px; border-radius:50px; font:700 12px "Manrope",sans-serif; cursor:pointer; transition:.25s; }
+.theme-toggle:hover { background:#25211e; color:#fff; }
+.route-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr); gap:25px; align-items:stretch; }
+.route-map { position:relative; min-height:500px; overflow:hidden; background:#dcecef; border:1px solid rgba(37,33,30,.12); }
+.route-map::after { content:"ИРКУТСК · БАЙКАЛ"; position:absolute; right:20px; bottom:14px; color:rgba(37,33,30,.28); font:700 10px "Manrope",sans-serif; letter-spacing:.16em; }
+.route-map svg { width:100%; height:100%; min-height:500px; display:block; }
+.map-water { fill:#a9d4dc; opacity:.9; }
+.map-land { fill:#edf0e5; stroke:#a6bfba; stroke-width:2; }
+.map-terrain { fill:none; stroke:#bed3c8; stroke-width:2; stroke-dasharray:5 9; opacity:.8; }
+.route-line { fill:none; stroke:#196d87; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:12 10; opacity:.42; transition:stroke-dashoffset .7s ease, opacity .3s ease; }
+.route-line.active { opacity:.95; stroke-dasharray:0; }
+.route-stop { cursor:pointer; outline:none; }
+.route-stop circle { fill:#25211e; stroke:#f8f5ef; stroke-width:5; transition:transform .25s ease, fill .25s ease, filter .25s ease; transform-box:fill-box; transform-origin:center; }
+.route-stop text { font:700 12px "Manrope",sans-serif; fill:#25211e; pointer-events:none; }
+.route-stop .stop-label { opacity:0; transform:translateY(8px); transition:.25s ease; }
+.route-stop:hover circle, .route-stop:focus-visible circle, .route-stop.selected circle { transform:scale(1.5); fill:#196d87; filter:drop-shadow(0 0 10px rgba(25,109,135,.55)); }
+.route-stop:hover .stop-label, .route-stop:focus-visible .stop-label, .route-stop.selected .stop-label { opacity:1; transform:translateY(0); }
+.route-map.has-hover .route-stop:not(:hover):not(.selected) { opacity:.3; }
+.route-map.focus-pulse .route-stop.selected circle { animation: routeFocus .55s ease; }
+@keyframes routeFocus { 0% { transform:scale(1); } 55% { transform:scale(1.8); } 100% { transform:scale(1.5); } }
+.route-card { background:#fffdfa; border:1px solid rgba(37,33,30,.12); padding:26px; display:flex; flex-direction:column; min-height:500px; position:relative; overflow:hidden; }
+.route-card::before { content:""; position:absolute; width:170px; height:170px; right:-65px; top:-65px; border-radius:50%; background:#d9ebee; }
+.route-card-number { position:relative; color:#196d87; font:700 12px "Manrope",sans-serif; letter-spacing:.15em; margin-bottom:10px; }
+.route-card h3 { position:relative; font:700 30px/1.05 "PT Serif",serif; margin-bottom:12px; }
+.route-card p { position:relative; color:#71695f; font-size:13px; line-height:1.7; margin-bottom:18px; }
+.route-card img { width:100%; height:235px; object-fit:contain; margin-top:auto; margin-bottom:18px; transition:opacity .25s ease, transform .35s ease; }
+.route-card.is-changing img { opacity:0; transform:translateY(12px) scale(.96); }
+.route-card-nav { position:relative; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(37,33,30,.12); padding-top:16px; }
+.route-arrow { width:40px; height:40px; border:1px solid rgba(37,33,30,.2); border-radius:50%; background:transparent; color:#25211e; font-size:20px; line-height:1; cursor:pointer; transition:.2s; }
+.route-arrow:hover { background:#25211e; color:#fff; transform:translateY(-2px); }
+.route-counter { color:#71695f; font-size:11px; letter-spacing:.12em; }
+.route-steps { display:flex; gap:8px; overflow-x:auto; padding:22px 2px 8px; scrollbar-width:thin; }
+.route-step { flex:0 0 auto; border:0; border-bottom:2px solid transparent; padding:10px 8px 8px; background:transparent; color:#71695f; font:600 11px "Manrope",sans-serif; text-align:left; cursor:pointer; white-space:nowrap; transition:.2s; }
+.route-step:hover, .route-step.selected { color:#196d87; border-bottom-color:#196d87; }
+.route-finale { margin-top:45px; padding:45px 20px; text-align:center; background:#e6dccd; }
+.route-finale h3 { font:700 clamp(28px,4vw,44px)/1.05 "PT Serif",serif; margin-bottom:18px; }
+.route-restart { border:0; background:#25211e; color:#fff; padding:14px 22px; border-radius:50px; font:700 12px "Manrope",sans-serif; cursor:pointer; transition:.25s; }
+.route-restart:hover { background:#196d87; transform:translateY(-3px); }
+body.route-night { background:#273233; color:#f4f6f1; }
+body.route-night::before { opacity:.12; background-image:radial-gradient(#c5e5e8 .6px,transparent .6px); }
+body.route-night .route-intro p, body.route-night .route-card p, body.route-night .route-counter { color:#c2d2d0; }
+body.route-night .route-map { background:#30484c; border-color:rgba(220,245,255,.15); }
+body.route-night .map-land { fill:#3e5550; stroke:#779b96; }
+body.route-night .map-terrain { stroke:#789b92; }
+body.route-night .route-stop text { fill:#f4f6f1; }
+body.route-night .route-card { background:#344144; border-color:rgba(220,245,255,.18); }
+body.route-night .route-card h3, body.route-night .route-arrow, body.route-night .theme-toggle { color:#f4f6f1; }
+body.route-night .route-card::before { background:#42656b; }
+body.route-night .route-finale { background:#3b4b4a; }
+body.route-night .route-restart { background:#9ed2dc; color:#25211e; }
+body.route-night .theme-toggle { border-color:rgba(220,245,255,.3); }
+@media(max-width:850px){ .route-layout{grid-template-columns:1fr;} .route-card{min-height:0;} .route-map,.route-map svg{min-height:430px;} .route-card img{height:220px;} }
+@media(max-width:550px){ .route-intro{display:block;} .route-intro p{margin-top:18px;} .route-controls{justify-content:flex-start;} .route-map,.route-map svg{min-height:360px;} .route-card{padding:20px;} .route-card h3{font-size:27px;} .route-card img{height:190px;} }
+@media(prefers-reduced-motion:reduce){ .route-stop circle,.route-line,.route-card img,.route-card,.route-arrow{transition:none!important;animation:none!important;} }
+
 @media(max-width: 700px) {
 
     .random-box {
@@ -1493,6 +1553,60 @@ body.baikal-mode .hero-image img {
         </div>
 
     </section>
+
+    <!-- INTERACTIVE ROUTE MAP -->
+    <section class="container route-section" id="route">
+        <div class="route-intro">
+            <div>
+                <div class="section-label">02 — маршрут</div>
+                <h2>Иркутск в 7 образах.</h2>
+            </div>
+            <p>Пройди маршрут и узнай город через его места, истории и атмосферу.</p>
+        </div>
+        <div class="route-controls">
+            <button class="theme-toggle" id="routeThemeToggle" type="button" onclick="toggleRouteTheme()">День / Ночь</button>
+        </div>
+        <div class="route-layout">
+            <div class="route-map" id="routeMap" aria-label="Схематичная карта Иркутска и Байкала">
+                <svg viewBox="0 0 900 520" role="img" aria-labelledby="routeMapTitle routeMapDesc">
+                    <title id="routeMapTitle">Маршрут Иркутск — Байкал</title>
+                    <desc id="routeMapDesc">Семь интерактивных образов города и региона соединены маршрутной линией.</desc>
+                    <path class="map-land" d="M0 0H900V520H0Z"/>
+                    <path class="map-water" d="M650 -20 C560 80 610 145 565 220 C520 295 560 375 520 540 L900 540 L900 -20Z"/>
+                    <path class="map-water" d="M0 330 C120 300 210 330 300 305 C380 282 430 300 510 285 L530 360 C430 380 350 350 270 375 C180 402 95 375 0 400Z" opacity=".7"/>
+                    <path class="map-terrain" d="M35 95 C170 40 280 120 380 75 S570 85 750 40"/>
+                    <path class="map-terrain" d="M40 455 C180 400 260 470 390 420 S600 460 830 390"/>
+                    <path class="map-terrain" d="M180 30 C220 125 170 180 230 250 S220 380 270 500"/>
+                    <path id="routeLine" class="route-line" d="M180 305 L310 245 L470 180 L390 285 L290 355 L440 410 L700 350"/>
+                    <g class="route-stop" data-route-stop="0" tabindex="0" role="button" aria-label="01 Деревянный Иркутск" onclick="selectRouteStop(0)" onkeydown="routeKey(event,0)"><circle cx="180" cy="305" r="13"/><text class="stop-label" x="135" y="280">Деревянный Иркутск</text><text x="174" y="310" fill="#fff" font-size="10">01</text></g>
+                    <g class="route-stop" data-route-stop="1" tabindex="0" role="button" aria-label="02 Ангара" onclick="selectRouteStop(1)" onkeydown="routeKey(event,1)"><circle cx="310" cy="245" r="13"/><text class="stop-label" x="292" y="218">Ангара</text><text x="304" y="250" fill="#fff" font-size="10">02</text></g>
+                    <g class="route-stop" data-route-stop="2" tabindex="0" role="button" aria-label="03 Байкал" onclick="selectRouteStop(2)" onkeydown="routeKey(event,2)"><circle cx="470" cy="180" r="13"/><text class="stop-label" x="452" y="153">Байкал</text><text x="464" y="185" fill="#fff" font-size="10">03</text></g>
+                    <g class="route-stop" data-route-stop="3" tabindex="0" role="button" aria-label="04 130-й квартал" onclick="selectRouteStop(3)" onkeydown="routeKey(event,3)"><circle cx="390" cy="285" r="13"/><text class="stop-label" x="350" y="260">130-й квартал</text><text x="384" y="290" fill="#fff" font-size="10">04</text></g>
+                    <g class="route-stop" data-route-stop="4" tabindex="0" role="button" aria-label="05 Спасская церковь" onclick="selectRouteStop(4)" onkeydown="routeKey(event,4)"><circle cx="290" cy="355" r="13"/><text class="stop-label" x="235" y="387">Спасская церковь</text><text x="284" y="360" fill="#fff" font-size="10">05</text></g>
+                    <g class="route-stop" data-route-stop="5" tabindex="0" role="button" aria-label="06 Сибирская железная дорога" onclick="selectRouteStop(5)" onkeydown="routeKey(event,5)"><circle cx="440" cy="410" r="13"/><text class="stop-label" x="395" y="445">Сибирская ж/д</text><text x="434" y="415" fill="#fff" font-size="10">06</text></g>
+                    <g class="route-stop" data-route-stop="6" tabindex="0" role="button" aria-label="07 Сибирь" onclick="selectRouteStop(6)" onkeydown="routeKey(event,6)"><circle cx="700" cy="350" r="13"/><text class="stop-label" x="680" y="322">Сибирь</text><text x="694" y="355" fill="#fff" font-size="10">07</text></g>
+                </svg>
+            </div>
+            <article class="route-card" id="routeCard" aria-live="polite">
+                <div class="route-card-number" id="routeNumber">01 / 07</div>
+                <h3 id="routeTitle">Деревянный Иркутск</h3>
+                <p id="routeText">Резные наличники и старые деревянные дома — одна из самых узнаваемых деталей города.</p>
+                <img id="routeImage" src="images/sticker-01.png" alt="Деревянный Иркутск">
+                <div class="route-card-nav"><button class="route-arrow" type="button" aria-label="Предыдущий образ" onclick="stepRoute(-1)">←</button><span class="route-counter">образ города</span><button class="route-arrow" type="button" aria-label="Следующий образ" onclick="stepRoute(1)">→</button></div>
+            </article>
+        </div>
+        <nav class="route-steps" aria-label="Образы маршрута" id="routeSteps">
+            <button class="route-step selected" type="button" onclick="selectRouteStop(0)">01 Деревянный Иркутск</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(1)">02 Ангара</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(2)">03 Байкал</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(3)">04 130-й квартал</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(4)">05 Спасская церковь</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(5)">06 Сибирская железная дорога</button>
+            <button class="route-step" type="button" onclick="selectRouteStop(6)">07 Сибирь</button>
+        </nav>
+        <div class="route-finale"><h3>Теперь ты знаешь Иркутск не просто по карте,<br>а по его образам.</h3><button class="route-restart" type="button" onclick="selectRouteStop(0)">Пройти маршрут ещё раз</button></div>
+    </section>
+
     <!-- RANDOM STICKER -->
 
 <section class="container random-section">
@@ -1851,13 +1965,13 @@ body.baikal-mode .hero-image img {
     const stickers = {
 
         1: {
-            image: "sticker-01.png",
+            image: "images/sticker-01.png",
             title: "Деревянный Иркутск",
             text: "Резные наличники и деревянная архитектура — одна из главных визуальных особенностей старого Иркутска."
         },
 
         2: {
-            image: "sticker-02.png",
+            image: "images/sticker-02.png",
             title: "Байкал",
             text: "Байкал — главный природный символ региона и одна из первых ассоциаций с поездкой в Иркутскую область."
         },
@@ -1942,6 +2056,53 @@ body.baikal-mode .hero-image img {
             document.body.style.overflow = "";
         }
     }
+
+    const routeStops = [
+        { title: "Деревянный Иркутск", image: "images/sticker-01.png", text: "Резные наличники и старые деревянные дома — живая память о городе, которую можно читать по фасадам." },
+        { title: "Ангара", image: "images/sticker-03.png", text: "Единственная река, вытекающая из Байкала, проходит через Иркутск и задаёт его ритм." },
+        { title: "Байкал", image: "images/sticker-02.png", text: "Большая вода рядом с городом: лёд, прозрачный воздух и горизонт, который меняет ощущение масштаба." },
+        { title: "130-й квартал", image: "images/sticker-06.png", text: "Квартал восстановленных исторических домов, где прогулка превращается в путешествие во времени." },
+        { title: "Спасская церковь", image: "images/sticker-05.png", text: "Один из узнаваемых силуэтов Иркутска и точка, где городская история встречается с повседневной жизнью." },
+        { title: "Сибирская железная дорога", image: "images/sticker-04.png", text: "Дорога, связавшая Сибирь с большим миром и превратившая Иркутск в важный город маршрутов." },
+        { title: "Сибирь", image: "images/sticker-07.png", text: "Простор, тайга и характер: образ региона, который остаётся с тобой далеко за пределами карты." }
+    ];
+    let activeRouteStop = 0;
+
+    function selectRouteStop(index) {
+        activeRouteStop = (index + routeStops.length) % routeStops.length;
+        const stop = routeStops[activeRouteStop];
+        const card = document.getElementById("routeCard");
+        const image = document.getElementById("routeImage");
+        card.classList.add("is-changing");
+        document.getElementById("routeNumber").textContent = String(activeRouteStop + 1).padStart(2, "0") + " / 07";
+        document.getElementById("routeTitle").textContent = stop.title;
+        document.getElementById("routeText").textContent = stop.text;
+        image.alt = stop.title;
+        image.onload = () => card.classList.remove("is-changing");
+        image.src = stop.image;
+        setTimeout(() => card.classList.remove("is-changing"), 380);
+        document.querySelectorAll(".route-stop").forEach((el, i) => el.classList.toggle("selected", i === activeRouteStop));
+        document.querySelectorAll(".route-step").forEach((el, i) => el.classList.toggle("selected", i === activeRouteStop));
+        const line = document.getElementById("routeLine");
+        if (line) {
+            const length = line.getTotalLength();
+            line.style.strokeDasharray = length;
+            line.style.strokeDashoffset = length * (1 - activeRouteStop / (routeStops.length - 1));
+        }
+        const map = document.getElementById("routeMap");
+        map.classList.remove("focus-pulse");
+        requestAnimationFrame(() => map.classList.add("focus-pulse"));
+    }
+
+    function stepRoute(delta) { selectRouteStop(activeRouteStop + delta); }
+    function routeKey(event, index) { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectRouteStop(index); } }
+    function toggleRouteTheme() { document.body.classList.toggle("route-night"); }
+    window.addEventListener("load", () => {
+        selectRouteStop(0);
+        const map = document.getElementById("routeMap");
+        map.addEventListener("pointerover", event => { if (event.target.closest(".route-stop")) map.classList.add("has-hover"); });
+        map.addEventListener("pointerout", event => { if (!event.relatedTarget || !event.relatedTarget.closest || !event.relatedTarget.closest(".route-stop")) map.classList.remove("has-hover"); });
+    });
 
 
     /* =====================================================
