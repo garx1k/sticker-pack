@@ -646,12 +646,15 @@ body.baikal-mode .hero-image img {
 .theme-toggle { border:1px solid rgba(37,33,30,.18); background:transparent; color:#25211e; padding:10px 15px; border-radius:50px; font:700 12px "Manrope",sans-serif; cursor:pointer; transition:.25s; }
 .theme-toggle:hover { background:#25211e; color:#fff; }
 .route-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr); gap:25px; align-items:stretch; }
-.route-map { position:relative; min-height:500px; overflow:hidden; background:#dcecef; border:1px solid rgba(37,33,30,.12); }
+.route-map { position:relative; height:clamp(420px, 42vw, 560px); min-height:0; overflow:hidden; background:#dcecef; border:1px solid rgba(37,33,30,.12); }
 .route-map::after { content:"ИРКУТСК · БАЙКАЛ"; position:absolute; right:20px; bottom:14px; color:rgba(37,33,30,.28); font:700 10px "Manrope",sans-serif; letter-spacing:.16em; }
-.route-map svg { width:100%; height:100%; min-height:500px; display:block; }
+.route-map-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+body.route-night .route-map-photo { filter:brightness(.72) saturate(.82) hue-rotate(4deg); }
+.route-map svg { position:relative; z-index:2; width:100%; height:100%; min-height:0; display:block; }
 .map-water { fill:#a9d4dc; opacity:.9; }
-.map-land { fill:#edf0e5; stroke:#a6bfba; stroke-width:2; }
-.map-terrain { fill:none; stroke:#bed3c8; stroke-width:2; stroke-dasharray:5 9; opacity:.8; }
+.map-land { fill:transparent; stroke:none; }
+.map-terrain { fill:none; stroke:transparent; }
+.map-water { fill:transparent; opacity:0; }
 .route-line { fill:none; stroke:#196d87; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:12 10; opacity:.42; transition:stroke-dashoffset .7s ease, opacity .3s ease; }
 .route-line.active { opacity:.95; stroke-dasharray:0; }
 .route-stop { cursor:pointer; outline:none; }
@@ -694,8 +697,8 @@ body.route-night .route-card::before { background:#42656b; }
 body.route-night .route-finale { background:#3b4b4a; }
 body.route-night .route-restart { background:#9ed2dc; color:#25211e; }
 body.route-night .theme-toggle { border-color:rgba(220,245,255,.3); }
-@media(max-width:850px){ .route-layout{grid-template-columns:1fr;} .route-card{min-height:0;} .route-map,.route-map svg{min-height:430px;} .route-card img{height:220px;} }
-@media(max-width:550px){ .route-intro{display:block;} .route-intro p{margin-top:18px;} .route-controls{justify-content:flex-start;} .route-map,.route-map svg{min-height:360px;} .route-card{padding:20px;} .route-card h3{font-size:27px;} .route-card img{height:190px;} }
+@media(max-width:850px){ .route-layout{grid-template-columns:1fr;} .route-card{min-height:0;} .route-map{height:clamp(380px,58vw,500px);} .route-card img{height:220px;} }
+@media(max-width:550px){ .route-intro{display:block;} .route-intro p{margin-top:18px;} .route-controls{justify-content:flex-start;} .route-map{height:clamp(330px,72vw,430px);} .route-card{padding:20px;} .route-card h3{font-size:27px;} .route-card img{height:190px;} }
 @media(prefers-reduced-motion:reduce){ .route-stop circle,.route-line,.route-card img,.route-card,.route-arrow{transition:none!important;animation:none!important;} }
 
 @media(max-width: 700px) {
@@ -1568,6 +1571,7 @@ body.baikal-mode .hero-image img {
         </div>
         <div class="route-layout">
             <div class="route-map" id="routeMap" aria-label="Схематичная карта Иркутска и Байкала">
+                <img class="route-map-photo" src="images/irkutsk-map.png" alt="Иллюстрированная карта Иркутска и Байкала">
                 <svg viewBox="0 0 900 520" role="img" aria-labelledby="routeMapTitle routeMapDesc">
                     <title id="routeMapTitle">Маршрут Иркутск — Байкал</title>
                     <desc id="routeMapDesc">Семь интерактивных образов города и региона соединены маршрутной линией.</desc>
@@ -1577,14 +1581,14 @@ body.baikal-mode .hero-image img {
                     <path class="map-terrain" d="M35 95 C170 40 280 120 380 75 S570 85 750 40"/>
                     <path class="map-terrain" d="M40 455 C180 400 260 470 390 420 S600 460 830 390"/>
                     <path class="map-terrain" d="M180 30 C220 125 170 180 230 250 S220 380 270 500"/>
-                    <path id="routeLine" class="route-line" d="M180 305 L310 245 L470 180 L390 285 L290 355 L440 410 L700 350"/>
-                    <g class="route-stop" data-route-stop="0" tabindex="0" role="button" aria-label="01 Деревянный Иркутск" onclick="selectRouteStop(0)" onkeydown="routeKey(event,0)"><circle cx="180" cy="305" r="13"/><text class="stop-label" x="135" y="280">Деревянный Иркутск</text><text x="174" y="310" fill="#fff" font-size="10">01</text></g>
-                    <g class="route-stop" data-route-stop="1" tabindex="0" role="button" aria-label="02 Ангара" onclick="selectRouteStop(1)" onkeydown="routeKey(event,1)"><circle cx="310" cy="245" r="13"/><text class="stop-label" x="292" y="218">Ангара</text><text x="304" y="250" fill="#fff" font-size="10">02</text></g>
-                    <g class="route-stop" data-route-stop="2" tabindex="0" role="button" aria-label="03 Байкал" onclick="selectRouteStop(2)" onkeydown="routeKey(event,2)"><circle cx="470" cy="180" r="13"/><text class="stop-label" x="452" y="153">Байкал</text><text x="464" y="185" fill="#fff" font-size="10">03</text></g>
-                    <g class="route-stop" data-route-stop="3" tabindex="0" role="button" aria-label="04 130-й квартал" onclick="selectRouteStop(3)" onkeydown="routeKey(event,3)"><circle cx="390" cy="285" r="13"/><text class="stop-label" x="350" y="260">130-й квартал</text><text x="384" y="290" fill="#fff" font-size="10">04</text></g>
-                    <g class="route-stop" data-route-stop="4" tabindex="0" role="button" aria-label="05 Спасская церковь" onclick="selectRouteStop(4)" onkeydown="routeKey(event,4)"><circle cx="290" cy="355" r="13"/><text class="stop-label" x="235" y="387">Спасская церковь</text><text x="284" y="360" fill="#fff" font-size="10">05</text></g>
-                    <g class="route-stop" data-route-stop="5" tabindex="0" role="button" aria-label="06 Сибирская железная дорога" onclick="selectRouteStop(5)" onkeydown="routeKey(event,5)"><circle cx="440" cy="410" r="13"/><text class="stop-label" x="395" y="445">Сибирская ж/д</text><text x="434" y="415" fill="#fff" font-size="10">06</text></g>
-                    <g class="route-stop" data-route-stop="6" tabindex="0" role="button" aria-label="07 Сибирь" onclick="selectRouteStop(6)" onkeydown="routeKey(event,6)"><circle cx="700" cy="350" r="13"/><text class="stop-label" x="680" y="322">Сибирь</text><text x="694" y="355" fill="#fff" font-size="10">07</text></g>
+                    <path id="routeLine" class="route-line" d="M171 198 L225 276 L747 364 L432 328 L414 161 L594 229 L783 83"/>
+                    <g class="route-stop" data-route-stop="0" tabindex="0" role="button" aria-label="01 Деревянный Иркутск" onclick="selectRouteStop(0)" onkeydown="routeKey(event,0)"><circle cx="171" cy="198" r="13"/><text class="stop-label" x="120" y="175">Деревянный Иркутск</text><text x="165" y="203" fill="#fff" font-size="10">01</text></g>
+                    <g class="route-stop" data-route-stop="1" tabindex="0" role="button" aria-label="02 Ангара" onclick="selectRouteStop(1)" onkeydown="routeKey(event,1)"><circle cx="225" cy="276" r="13"/><text class="stop-label" x="208" y="250">Ангара</text><text x="219" y="281" fill="#fff" font-size="10">02</text></g>
+                    <g class="route-stop" data-route-stop="2" tabindex="0" role="button" aria-label="03 Байкал" onclick="selectRouteStop(2)" onkeydown="routeKey(event,2)"><circle cx="747" cy="364" r="13"/><text class="stop-label" x="725" y="338">Байкал</text><text x="741" y="369" fill="#fff" font-size="10">03</text></g>
+                    <g class="route-stop" data-route-stop="3" tabindex="0" role="button" aria-label="04 130-й квартал" onclick="selectRouteStop(3)" onkeydown="routeKey(event,3)"><circle cx="432" cy="328" r="13"/><text class="stop-label" x="390" y="303">130-й квартал</text><text x="426" y="333" fill="#fff" font-size="10">04</text></g>
+                    <g class="route-stop" data-route-stop="4" tabindex="0" role="button" aria-label="05 Спасская церковь" onclick="selectRouteStop(4)" onkeydown="routeKey(event,4)"><circle cx="414" cy="161" r="13"/><text class="stop-label" x="362" y="137">Спасская церковь</text><text x="408" y="166" fill="#fff" font-size="10">05</text></g>
+                    <g class="route-stop" data-route-stop="5" tabindex="0" role="button" aria-label="06 Сибирская железная дорога" onclick="selectRouteStop(5)" onkeydown="routeKey(event,5)"><circle cx="594" cy="229" r="13"/><text class="stop-label" x="545" y="205">Сибирская ж/д</text><text x="588" y="234" fill="#fff" font-size="10">06</text></g>
+                    <g class="route-stop" data-route-stop="6" tabindex="0" role="button" aria-label="07 Сибирь" onclick="selectRouteStop(6)" onkeydown="routeKey(event,6)"><circle cx="783" cy="83" r="13"/><text class="stop-label" x="763" y="58">Сибирь</text><text x="777" y="88" fill="#fff" font-size="10">07</text></g>
                 </svg>
             </div>
             <article class="route-card" id="routeCard" aria-live="polite">
